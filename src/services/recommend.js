@@ -6,3 +6,11 @@ export const getTopBanner = () => {
     method: "GET",
   });
 };
+
+export function getHotRecommend(limit) {
+  return request({
+    url: "/personalized",
+    method: "GET",
+    params: { limit },
+  });
+}
