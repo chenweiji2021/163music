@@ -20,7 +20,7 @@ const SongCover = (props) => {
         </div>
       </div>
       <div className={"cover-bottom text-nowrap"}>{info.name}</div>
-      <div className={"cover-source"}>{info.copywriter}</div>
+      <div className={"cover-source"}>by {info.copywriter}</div>
     </SongCoverWrapper>
   );
 };
