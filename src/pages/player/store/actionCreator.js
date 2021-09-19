@@ -1,6 +1,7 @@
 import * as actionTypes from "./constants";
-import { getSongDetail } from "../../../services/player";
+import { getLyric, getSongDetail } from "../../../services/player";
 import { getRandomNumber } from "../../../utils/math-utils";
+import { parseLyric } from "../../../utils/parse-lyric";
 
 const changePlayListAction = (playList) => ({
   type: actionTypes.CHANGE_PLAY_LIST,
@@ -23,6 +24,7 @@ export const getSongDetailAction = (ids) => {
       //  playList中存在这首歌
       dispatch(changeCurrentSongIndexAction(songIndex));
       dispatch(changeCurrentSongAction(playList[songIndex]));
+      dispatch(getLyricAction(playList[songIndex].id));
     } else {
       //  playList中不存在这首歌
       const data = await getSongDetail(ids);
@@ -31,6 +33,7 @@ export const getSongDetailAction = (ids) => {
       dispatch(changePlayListAction(newPlayList));
       dispatch(changeCurrentSongIndexAction(newPlayList.length - 1));
       dispatch(changeCurrentSongAction(songObj));
+      dispatch(getLyricAction(songObj.id));
     }
   };
 };
@@ -60,5 +63,22 @@ export const changeNextMusicAction = (tag) => {
     }
     dispatch(changeCurrentSongIndexAction(currentSongIndex));
     dispatch(changeCurrentSongAction(playList[currentSongIndex]));
+    dispatch(getLyricAction(playList[currentSongIndex].id));
   };
 };
+
+const changeLyricListAction = (lyricList) => ({
+  type: actionTypes.CHANGE_LYRIC_LIST,
+  payload: lyricList,
+});
+export const getLyricAction = (id) => {
+  return async (dispatch) => {
+    const data = await getLyric(id);
+    const lyricList = parseLyric(data.lrc.lyric);
+    dispatch(changeLyricListAction(lyricList));
+  };
+};
+export const changeCurrentLyricIndexAction = (currentLyricIndex) => ({
+  type: actionTypes.CHANGE_CURRENT_LYRIC_INDEX,
+  payload: currentLyricIndex,
+});

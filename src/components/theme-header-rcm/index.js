@@ -14,7 +14,7 @@ const ThemeHeaderRCM = (props) => {
           {keywords.map((item) => {
             return (
               <div key={item} className={"item"}>
-                <a href="#">{item}</a>
+                <a href="/">{item}</a>
                 <span className={"divider"}>|</span>
               </div>
             );
@@ -22,7 +22,7 @@ const ThemeHeaderRCM = (props) => {
         </div>
       </div>
       <div className={"right"}>
-        <a href="#">更多</a>
+        <a href="/">更多</a>
         <i className={"sprite_02 icon"} />
       </div>
     </HeaderWrapper>

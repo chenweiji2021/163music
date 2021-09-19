@@ -1,7 +1,8 @@
+import React from "react";
 import { Redirect } from "react-router-dom";
 
-import Discover from "../pages/discover";
-import Recommend from "../pages/discover/c-pages/recommend";
+// import Discover from "../pages/discover";
+// import Recommend from "../pages/discover/c-pages/recommend";
 import Ranking from "../pages/discover/c-pages/ranking";
 import Songs from "../pages/discover/c-pages/songs";
 import DjRadio from "../pages/discover/c-pages/djradio";
@@ -11,6 +12,11 @@ import Album from "../pages/discover/c-pages/album";
 import Friend from "../pages/friend";
 import Mine from "../pages/mine";
 import Player from "../pages/player";
+
+const Discover = React.lazy(() => import("../pages/discover"));
+const Recommend = React.lazy(() =>
+  import("../pages/discover/c-pages/recommend")
+);
 
 const routes = [
   {

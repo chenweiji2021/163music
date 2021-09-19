@@ -5,6 +5,7 @@ import {
   changeNextMusicAction,
   changeSequenceAction,
   getSongDetailAction,
+  changeCurrentLyricIndexAction,
 } from "../store/actionCreator";
 import { formatDate, getPlayUrl } from "../../../utils/format-utils";
 
@@ -19,7 +20,7 @@ const AppPlayerBar = () => {
   const [isClickSlider, setIsClickSlider] = useState(false);
 
   // redux hooks
-  const { currentSong, playList } = useSelector(
+  const { currentSong, playList, lyricList, currentLyricIndex } = useSelector(
     (state) => state.player,
     shallowEqual
   );
@@ -27,10 +28,6 @@ const AppPlayerBar = () => {
 
   // 获取audio该DOM元素
   const audioRef = useRef();
-  // 实时更新currentTime的值
-  const handleTimeUpdate = (e) => {
-    setCurrentTime(e.target.currentTime * 1000);
-  };
   // 设置默认歌曲
   useEffect(() => {
     dispatch(getSongDetailAction(167876));
@@ -92,6 +89,8 @@ const AppPlayerBar = () => {
       case 2:
         message.success("单曲循环");
         break;
+      default:
+        break;
     }
   };
   const playNextMusic = (tag) => {
@@ -107,6 +106,27 @@ const AppPlayerBar = () => {
       audioRef.current.play();
     } else {
       dispatch(changeNextMusicAction(1));
+    }
+  };
+
+  const handleTimeUpdate = (e) => {
+    // 实时更新currentTime的值
+    setCurrentTime(e.target.currentTime * 1000);
+    // 歌词相关逻辑
+    let i = 0;
+    for (; i < lyricList.length; i++) {
+      if (e.target.currentTime * 1000 < lyricList[i].time) {
+        break;
+      }
+    }
+    if (i - 1 !== currentLyricIndex) {
+      dispatch(changeCurrentLyricIndexAction(i - 1));
+      message.open({
+        content: lyricList[i - 1]?.content,
+        duration: 0,
+        key: "lyric",
+      });
+      // console.log(lyricList[i - 1]?.content);
     }
   };
 
