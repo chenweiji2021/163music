@@ -1,9 +1,19 @@
 import React, { memo } from "react";
 
+import { getSongDetailAction } from "../../pages/player/store/actionCreator";
+
 import { TopRankingWrapper } from "./style";
+import { useDispatch } from "react-redux";
 
 const TopRanking = (props) => {
   const { info } = props;
+
+  const dispatch = useDispatch();
+
+  const playMusic = (item) => {
+    dispatch(getSongDetailAction(item.id));
+  };
+
   return (
     <TopRankingWrapper>
       <div className={"header"}>
@@ -25,7 +35,10 @@ const TopRanking = (props) => {
               <div className={"info"}>
                 <span className={"name text-nowrap"}>{item.name}</span>
                 <div className={"operate"}>
-                  <button className={"sprite_02 btn play"} />
+                  <button
+                    className={"sprite_02 btn play"}
+                    onClick={() => playMusic(item)}
+                  />
                   <button className={"sprite_icon2 btn addTo"} />
                   <button className={"sprite_02 btn favor"} />
                 </div>

@@ -17,7 +17,7 @@ const TopBanner = () => {
 
   useEffect(() => {
     dispatch(getTopBannerAction());
-  }, []);
+  }, [dispatch]);
   // console.log("bannerList =>", bannerList);
 
   const carouselChange = (from, to) => {

@@ -10,6 +10,7 @@ import Album from "../pages/discover/c-pages/album";
 
 import Friend from "../pages/friend";
 import Mine from "../pages/mine";
+import Player from "../pages/player";
 
 const routes = [
   {
@@ -49,6 +50,10 @@ const routes = [
       {
         path: "/discover/album",
         component: Album,
+      },
+      {
+        path: "/discover/player",
+        component: Player,
       },
     ],
   },
