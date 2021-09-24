@@ -3,8 +3,6 @@ import ReactDOM from "react-dom";
 import "@/assets/css/reset.css";
 import App from "./App";
 
-console.log("项目已启动");
-console.log("test git");
-console.log("test pull");
+console.log("GitHub action111");
 
 ReactDOM.render(<App />, document.getElementById("root"));
