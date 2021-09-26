@@ -56,13 +56,13 @@ export const getRankingAction = (idx) => {
   return async (dispatch) => {
     const data = await getTopRanking(idx);
     switch (idx) {
-      case 3:
+      case 19723756:
         dispatch(changeUpRankingAction(data.playlist));
         break;
-      case 0:
+      case 3779629:
         dispatch(changeNewRankingAction(data.playlist));
         break;
-      case 2:
+      case 2884035:
         dispatch(changeOriginRankingAction(data.playlist));
         break;
       default:

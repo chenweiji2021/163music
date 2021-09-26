@@ -15,9 +15,9 @@ const RecommendRanking = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getRankingAction(3));
-    dispatch(getRankingAction(0));
-    dispatch(getRankingAction(2));
+    dispatch(getRankingAction(19723756));
+    dispatch(getRankingAction(3779629));
+    dispatch(getRankingAction(2884035));
   }, [dispatch]);
 
   return (

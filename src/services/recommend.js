@@ -24,8 +24,8 @@ export function getNewAlbum(limit) {
 
 export function getTopRanking(idx) {
   return request({
-    url: "/top/list",
-    params: { idx },
+    url: "/playlist/detail",
+    params: { id: idx },
   });
 }
 
