@@ -30,7 +30,6 @@
     "test": "craco test",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://vikichan2021.github.io/163music/",
   "eslintConfig": {
     "extends": [
       "react-app",
